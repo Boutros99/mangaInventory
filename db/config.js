@@ -4,7 +4,7 @@ const path = require('path');
 
 
 const config = {
-    host: process.env.PGDHOST || process.env.DB_HOST, 
+    host: process.env.PGHOST || process.env.DB_HOST, 
     user: process.env.PGUSER || process.env.DB_USER,
     database: process.env.PGDATABASE || process.env.DB_DATABASE,
     password: process.env.PGPASSWORD || process.env.DB_PASSWORD,
