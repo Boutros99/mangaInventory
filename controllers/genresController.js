@@ -1,6 +1,7 @@
 const genresQueries = require("../db/queries/genresQueries");
 const { body, validationResult } = require("express-validator");
 const customValidator = require('../middlewares/customValidator');
+const middlewareFunctions = require('../middlewares/functions');
 
 // Genre Validator
 const validateGenre = [
@@ -51,8 +52,9 @@ async function getGenre(req, res) {
       return res.status(404).render('notFound')
     } ;
 
+
     res.render("genre" , {
-        genre : genre,
+        genre : middlewareFunctions.unescapeObject(genre),
         mangas : mangas,
         error : error ,
         showDeleteElement : showDeleteElement,
@@ -104,12 +106,13 @@ async function updateGenreGet(req, res) {
   };
 
   //continue if password ok
-  const genre = await genresQueries.getGenre(genreID);
+  let genre = await genresQueries.getGenre(genreID);
   if (!genre) {
     return res.status(404).render('notFound')
   } ;
+
   res.render("updateGenre", {
-    genre : genre
+    genre : middlewareFunctions.unescapeObject(genre)
   })
 }
 
@@ -117,11 +120,11 @@ async function updateGenrePost(req, res) {
 
   // dealing with input mistakes 
   let genreID=parseInt(req.params.id);
-  const genre = await genresQueries.getGenre(genreID);
+  let genre = await genresQueries.getGenre(genreID);
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).render("updateGenre", {
-      genre : genre,
+      genre : middlewareFunctions.unescapeObject(genre),
       errors: errors.array(),
     });
   }

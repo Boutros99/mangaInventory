@@ -4,6 +4,7 @@ const { body, validationResult } = require("express-validator");
 const mangasGenresQueries = require("../db/queries/mangasGenresQueries");
 const mangasGenresMiddlewares = require("../middlewares/mangasGenresMiddlewares.js");
 const customValidator = require('../middlewares/customValidator');
+const middlewareFunctions = require('../middlewares/functions');
 
 
 // Manga Validator
@@ -59,7 +60,7 @@ async function getManga(req, res) {
         return res.status(404).render('notFound')
     }
     res.render("manga" , {
-        manga : manga,
+        manga : middlewareFunctions.unescapeObject(manga),
         genres : genres,
         error : error ,
         showDeleteElement : showDeleteElement,
@@ -151,7 +152,7 @@ async function updateMangaGet(req, res) {
     };
 
   //continue if password ok
-    const manga = await mangasQueries.getManga(mangaID);
+    let manga = await mangasQueries.getManga(mangaID);
     if (!manga) {
         return res.status(404).render('notFound')
     }
@@ -159,7 +160,7 @@ async function updateMangaGet(req, res) {
     const mangaGenreIdList = genresOfManga.map(genre =>genre.id) ; //we retrieve only the list of genre.ID selected for the manga
     const allgenres = await genresQueries.getAllGenres();
     res.render("updateManga", {
-      manga : manga,
+      manga : middlewareFunctions.unescapeObject(manga),
       allgenres: allgenres,
       mangaGenreIdList:mangaGenreIdList
     })
@@ -171,7 +172,7 @@ async function updateMangaPost(req, res) {
 
   // dealing with input mistakes 
   let mangaID=parseInt(req.params.id);
-  const manga = await mangasQueries.getManga(mangaID);
+  let manga = await mangasQueries.getManga(mangaID);
   const errors = validationResult(req);
 
   const genresOfManga= await mangasQueries.getGenresOfManga(mangaID);
@@ -180,7 +181,7 @@ async function updateMangaPost(req, res) {
 
   if (!errors.isEmpty()) {
     return res.status(400).render("updateManga", {
-      manga : manga,
+      manga : middlewareFunctions.unescapeObject(manga),
       allgenres: allgenres,
       mangaGenreIdList:mangaGenreIdList,
       errors: errors.array(),
