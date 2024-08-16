@@ -121,7 +121,7 @@ async function createMangaPost (req, res)  {
     console.error('Error adding Manga & Genre relation:', error);
     return res.status(500).render('serverError');
     }
-    rres.redirect(`/mangas/${insertedMangadID}` );
+    res.redirect(`/mangas/${insertedMangadID}` );
 }
 
 // controllers used when updating a manga, redirecting to the create form and updating data
