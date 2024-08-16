@@ -9,7 +9,7 @@
     width: 100%;
     height: 100%;
     background-image: url('/images/contentBackgroundImage.jpg'); /* Repeat background image */
-    background-size: auto;
+    background-size: cover;
     background-position: top center;
     background-repeat: repeat-y;
     filter: brightness(20%); /* Adjust brightness here */
@@ -42,7 +42,7 @@ form {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    max-height: 70vh;
+    max-height: min(55vh,600px);
     min-height: 40vh;
     overflow: auto;
     gap: 30px;
