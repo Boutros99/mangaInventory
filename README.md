@@ -1,0 +1,2 @@
+# mangaInventory
+Manga Inventory Project
