@@ -6,7 +6,7 @@ const path = require('path');
 const config = {
     host: process.env.PGDHOST || process.env.DB_HOST, 
     user: process.env.PGUSER || process.env.DB_USER,
-    database: process.env.PGDATABASE || process.env.DATABASE,
+    database: process.env.PGDATABASE || process.env.DB_DATABASE,
     password: process.env.PGPASSWORD || process.env.DB_PASSWORD,
     port: process.env.PGPORT || process.env.DB_PORT , // The default port
   };
@@ -32,4 +32,5 @@ if (process.env.NODE_ENV === 'production') {
     config.sslMode = process.env.PGSSLMODE || 'require'; // Optional: default to 'require'
 };
 
+console.log(config);
 module.exports = config;
