@@ -1,0 +1,47 @@
+<!-- views/mangas.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mangas</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/mangas.css">
+</head>
+
+<body>
+  <div class="container">
+
+   <%- include('partials/navbar') %>
+
+   <main class="mainContent">
+
+      <h1 class="mainTitle"> Mangas</h1>
+
+      <div class="mangaContainer">
+
+        <% if (locals.mangas) {%>
+            <% mangas.forEach(manga => { %>
+              <button class="mangaButton">
+                
+                <a href="/mangas/<%= manga.id %>"> <%= manga.title %> </a>
+
+              </button>
+            <% }); %>
+          <% } %>
+
+      </div>
+
+   </main>
+
+
+    <%- include('partials/footer') %>
+
+  </div>
+
+
+
+</body>
+</html>

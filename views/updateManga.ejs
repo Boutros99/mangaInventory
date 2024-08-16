@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update <%= manga.title %> </title>
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/createOrUpdate.css">
+</head>
+<body>
+  <div class="container">
+
+    <%- include('partials/navbar') %>
+
+    <main class="mainContent">
+
+      <div class="box">
+
+        <h1 class="mainTitle"> Update <%= manga.title %> Information </h1>
+
+        <%- include("partials/errors.ejs") %>
+
+        <form action="/mangas/<%= manga.id %>/update"" method="POST">
+
+          <div class="inputBox">
+            <label for="title">Title </label>
+            <input type="text" name="title" id="title" value="<%= manga.title %>" required>
+          </div>
+
+          <div class="inputBox">
+            <label for="description">Description </label>
+            <textarea type="text" name="description" id="description"> <%= manga.description %> </textarea>
+          </div>
+
+          <div class="inputBox">
+            <label for="author">Author</label>
+            <input type="text" id="author" name="author" value="<%= manga.author %>" required>
+          </div>
+    
+          <div class="inputBox">
+            <label for="status">Status </label>
+            <select name="status" id="status">
+              <option value="Completed"  <%= manga.status==="Completed" ? 'selected' : '' %> >
+                Completed
+              </option>
+    
+              <option value="Ongoing" <%= manga.status==="Ongoing" ? 'selected' : '' %> >
+                Ongoing
+              </option>
+            </select>
+          </div>
+
+          <div class="inputBox">
+            <label for="publicationYear">Year of Publication</label>
+            <select id="publicationYear" name="publicationYear">
+              <option value="<%= manga.publication_year %>"  selected></option>  <!-- underscore here because name of the column in the table -->
+              <% 
+                const startYear = 1900;
+                const endYear = new Date().getFullYear();
+                for (let year = endYear; year >= startYear; year--) { 
+              %>
+              <option value="<%= year %>" <%= manga.publication_year===year ? 'selected' : '' %> >
+                  <%= year %>
+              </option>
+              <% } %>
+          </select>
+          </div>
+
+          <div class="inputBox">
+            <label for="genresIDs">Genres </label>
+            <select name="genresIDs" id="genresIDs" multiple required>
+              <% if (locals.allgenres) {%>
+                  <% allgenres.forEach(genre => { %>
+                  <option value="<%= genre.id %>" <%= mangaGenreIdList.includes(genre.id) ? 'selected' : '' %> >
+                      <%= genre.name %>
+                  </option>
+                  <% }); %>
+              <% } %>
+            </select>   
+          </div>
+
+          <div class="inputBox">
+            <label for="image">Image URL </label>
+            <input type="text" name="image" id="image" value="<%= manga.image %>" >
+          </div>
+
+          <div class="buttonsSection">
+            <button id="submitButton" type="submit">Update Manga</button>
+
+            <button id="cancelButton">
+              <a href="/mangas/<%= manga.id %>">Cancel</a>
+            </button>
+
+          </div>
+        </form>
+
+      </div>
+
+
+    </main>
+
+
+    <%- include('partials/footer') %>
+
+  </div>
+
+</body>
+</html>

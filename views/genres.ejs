@@ -1,0 +1,47 @@
+<!-- views/genres.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genres</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/genres.css">
+</head>
+
+<body>
+  <div class="container">
+
+   <%- include('partials/navbar') %>
+
+   <main class="mainContent">
+
+      <h1 class="mainTitle"> Genres</h1>
+
+      <div class="genreContainer">
+
+        <% if (locals.genres) {%>
+            <% genres.forEach(genre => { %>
+              <button class="genreButton">
+                
+                <a href="/genres/<%= genre.id %>"> <%= genre.name %> </a>
+
+              </button>
+            <% }); %>
+          <% } %>
+
+      </div>
+
+   </main>
+
+
+    <%- include('partials/footer') %>
+
+  </div>
+
+
+
+</body>
+</html>

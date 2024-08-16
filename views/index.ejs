@@ -1,0 +1,34 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manga Inventory</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+
+<body>
+  
+  <div class="container">
+
+    <%- include('partials/navbar') %>
+
+    <main class="mainContent">
+      <h1 class="mainTitle">Manga Inventory</h1>
+      <p class="introText"> Discover and expand this library, one manga at a time. </p>
+      <p class="introText"> いきましょう ! </p>
+      <button class="exploreButton"><a href="/genres"> Explore Genres </a></button>
+    </main>
+
+    <%- include('partials/footer') %>
+
+  </div>
+
+
+</body>
+</html>

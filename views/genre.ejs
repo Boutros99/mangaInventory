@@ -1,0 +1,115 @@
+<!-- views/genre.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genre</title>
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/singleContentDetails.css">
+    <script src="/javascript/deleteForm.js" defer></script>
+    <script src="/javascript/updateForm.js" defer></script>
+
+</head>
+
+<body>
+    <div class="container">
+
+        <%- include('partials/navbar') %>
+
+
+        <div class="subContainer">
+            <% if (locals.genre && locals.genre.image) {%>
+                <img src="<%= genre.image %>" alt="<%= genre.name %>">
+    
+            <% } else{ %>  
+                  <img src="/images/noUrlImage.jpg" alt="NoUrlUploaded">
+            <% } %>
+
+            <main class="detailsContent">
+                <div class="primaryContent">
+                    <% if (locals.genre) {%>
+                    <h1 class="genreTitle"> <%= genre.name %> </h1>
+                    <p> <%= genre.description %> </p>
+                    <% } %>
+                </div>
+
+                <div class="secondaryContent">
+                    <h3>Related Mangas</h3>
+                    <ul>
+                        <% if (locals.mangas) {%>
+                            <% mangas.forEach(manga => { %>
+                            <li>
+                                <a href="/mangas/<%= manga.id %>"><%= manga.title %></a>
+                            </li>
+                            <% }); %>
+                        <% } %>
+                    </ul>
+                </div>
+
+                <div class="buttonsSection" id="revealingButtons">
+                    <!-- Button to show the delete form -->
+                    <button id="showUpdateFormButton">Update</button>
+
+                    <!-- Button to show the delete form -->
+                    <button id="showDeleteFormButton">Delete</button>
+
+
+                </div>
+
+
+                <!-- Deletion form that can be hidden -->
+                <form id="deleteForm" class="<%= showDeleteElement ? 'visible' : 'hidden' %>"  action="/genres/<%= genre.id %>/delete" method="POST">
+                    <% if (locals.error) {%>
+                        <p class="errorMessage"> <%= error %> </p>
+                    <% } %>
+                    <label for="deletionPassword">Please enter the password for deletion:</label>
+                    <input type="password" id="deletionPassword" name="password" required>
+                    <br> <br>
+
+                    <div class="buttonsSection">
+
+                        <button  type="button" class="cancelButton" id="cancelDeleteButton">
+                            <a href="/genres/<%= genre.id %>"> Cancel </a>
+                        </button>
+                        <button class="confirmButton" type="submit" onclick="return confirm('Are you sure you want to delete this Genre?');">Confirm</button>
+                        
+                    </div>
+                </form>
+
+                <!-- update form that can be hidden -->
+                <form id="updateForm" class="<%= showUpdateElement ? 'visible' : 'hidden' %>"  action="/genres/<%= genre.id %>/update" method="GET">
+                    <% if (locals.error) {%>
+                        <p class="errorMessage"> <%= error %> </p>
+                    <% } %>
+                    <label for="updatePassword">Please enter the password for update:</label>
+                    <input type="password" id="updatePassword" name="password" required>
+                    <br> <br>
+
+                    <div class="buttonsSection">
+
+                        <button  type="button" class="cancelButton" id="cancelUpdateButton">
+                            <a href="/genres/<%= genre.id %>"> Cancel </a>
+                        </button>
+
+                        <button class="confirmButton" type="submit" >Confirm</button>
+
+                    </div>
+
+                </form>
+
+
+            </main>
+
+        </div>
+
+
+        <%- include('partials/footer') %>
+
+    </div>
+
+
+</body>
+</html>

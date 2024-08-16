@@ -1,0 +1,30 @@
+<!-- views/notFound.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found</title>
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/footer.css">
+</head>
+
+
+<body>
+  
+  <div class="container">
+
+    <%- include('partials/navbar') %>
+    <main class="mainContent">
+        <h1>ERROR 404 NOT FOUND</h1>
+        <img src="/images/errorImage.jpg" alt="err404" style="width: 800px; height: auto;">
+
+    </main>
+    <%- include('partials/footer') %>
+
+  </div>
+
+
+</body>
+</html>

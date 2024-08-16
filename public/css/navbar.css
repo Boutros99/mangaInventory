@@ -1,0 +1,17 @@
+.navbar {
+    padding: 30px;
+    background-color:black;
+}
+  
+.navlinks {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    list-style-type: none;
+}
+  
+.navlinks a {
+    font-weight: bold;
+    text-decoration: none;
+    color: rgb(255, 157, 10);
+}

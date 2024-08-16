@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Genre</title>
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/createOrUpdate.css">
+</head>
+<body>
+  <div class="container">
+
+    <%- include('partials/navbar') %>
+
+    <main class="mainContent">
+
+      <div class="box">
+
+        <h1 class="mainTitle"> Add New Genre</h1>
+
+        <%- include("partials/errors.ejs") %>
+        <form action="/genres/create" method="POST">
+
+          <div class="inputBox">
+          <label for="genreName">Genre Name </label>
+          <input type="text" name="genreName" id="name" required>
+          </div>
+
+          <div class="inputBox">
+          <label for="genreDescription">Genre Description </label>
+          <textarea type="text" name="genreDescription" id="description"> </textarea>
+          </div>
+
+          <div class="inputBox">
+          <label for="genreImage">Image URL </label>
+          <input type="text" name="genreImage" id="image">
+          </div>
+
+
+          <div class="buttonsSection">
+            <button  id="submitButton" type="submit">Add Genre</button>
+          </div>
+        </form>
+
+      </div>
+
+
+    </main>
+
+
+    <%- include('partials/footer') %>
+
+  </div>
+
+</body>
+</html>

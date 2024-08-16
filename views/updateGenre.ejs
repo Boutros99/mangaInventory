@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update <%= genre.name %></title>
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/createOrUpdate.css">
+</head>
+<body>
+  <div class="container">
+
+    <%- include('partials/navbar') %>
+
+    <main class="mainContent">
+
+      <div class="box">
+
+        <h1 class="mainTitle"> Update <%= genre.name %> Information </h1>
+
+        <%- include("partials/errors.ejs") %>
+        <form action="/genres/<%= genre.id %>/update" method="POST">
+
+          <div class="inputBox">
+          <label for="name">Genre Name </label>
+          <input type="text" name="genreName" id="name" value="<%= genre.name %>" required>
+          </div>
+
+          <div class="inputBox">
+          <label for="description">Genre Description </label>
+          <textarea type="text" name="genreDescription" id="description" > <%= genre.description %> </textarea>
+          </div>
+
+          <div class="inputBox">
+          <label for="image">Image URL </label>
+          <input type="text" name="genreImage" id="image" value="<%= genre.image %>">
+          </div>
+
+          <div class="buttonsSection">
+            <button id="submitButton" type="submit">Update Genre</button>
+
+            <button id="cancelButton">
+              <a href="/genres/<%= genre.id %>">Cancel</a>
+            </button>
+
+          </div>
+
+        </form>
+
+      </div>
+
+
+    </main>
+
+
+    <%- include('partials/footer') %>
+
+  </div>
+
+</body>
+</html>

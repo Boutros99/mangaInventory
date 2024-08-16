@@ -1,0 +1,59 @@
+.mainContent::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/images/genresImage.jpg'); /* Repeat background image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: brightness(50%); /* Adjust brightness here */
+    z-index: -1; /* Place the pseudo-element behind the content */
+}
+
+/* Ensure content is visible above the background */
+.mainContent h1, .mainContent .genreContainer{
+    position: relative;
+    z-index: 1; /* Content stays above the pseudo-element */
+}
+
+
+.genreContainer {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    align-content: center;
+    gap: 30px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.mainTitle {
+    margin-top: 50px;
+    font-size: 48px;
+    color: white;
+}
+
+
+.genreButton {
+    font-size: 28px;
+    font-weight: bold;
+    width: 200px;
+    color: black;
+    background-color:rgb(255, 157, 10);
+    border: 2px solid black;
+    padding: 15px;
+    border-radius: 0.8pc;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.genreButton:hover {
+    transform: scale(1.2); /* Increase size by 10% */
+    box-shadow: 0 4px 8px rgba(146, 130, 130, 0.2); 
+    background-color: white;
+}
+
