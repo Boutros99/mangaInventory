@@ -1,7 +1,19 @@
 #! /usr/bin/env node
 require('dotenv').config();
 const { Client } = require("pg");
+const fs = require('fs');
+const path = require('path');
 
+// Load SSL/TLS root certificate from the environment variable
+const sslRootCertPath = process.env.PGSSLROOTCERT;
+
+// Read the root certificate file
+let sslRootCert;
+if (sslRootCertPath) {
+  sslRootCert = fs.readFileSync(path.resolve(sslRootCertPath)).toString();
+} else {
+  throw new Error('PGSSLROOTCERT environment variable is not set.');
+}
 
 const SQL = `
 
@@ -65,11 +77,16 @@ ON CONFLICT (manga_id,genre_id) DO NOTHING;
 async function main() {
   console.log("seeding...");
   const client = new Client({
-    host: process.env.DB_HOST, // or wherever the db is hosted
-    user: process.env.DB_USER,
-    database: process.env.DB_DATABASE,
-    password: process.env.DB_PASSWORD,
-    port: 5432 // The default port
+    host: process.env.PGDHOST || process.env.DB_HOST, 
+    user: process.env.PGUSER || process.env.DB_USER,
+    database: process.env.PGDATABASE || "manga_inventory",
+    password: process.env.PGPASSWORD || process.env.DB_PASSWORD,
+    port: process.env.PGPORT ||5432, // The default port
+    ssl: {
+      rejectUnauthorized: true,    // Validate server certificate
+      ca: sslRootCert,             // Root certificate
+    },
+    sslMode: process.env.PGSSLMODE || 'require', // Optional: default to 'require'
   });
   await client.connect();
   await client.query(SQL);
