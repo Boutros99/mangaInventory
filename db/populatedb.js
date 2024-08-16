@@ -58,7 +58,7 @@ INSERT INTO MANGAS_GENRES (manga_id, genre_id) VALUES
 ((SELECT id FROM MANGAS WHERE title = 'Gurren Lagann'), (SELECT id FROM GENRES WHERE name = 'Shonen')),
 ((SELECT id FROM MANGAS WHERE title = 'Gintama'), (SELECT id FROM GENRES WHERE name = 'Comedy')),
 ((SELECT id FROM MANGAS WHERE title = 'Gintama'), (SELECT id FROM GENRES WHERE name = 'Shonen'))
-ON CONFLICT (manga_id) DO NOTHING;
+ON CONFLICT (manga_id,genre_id) DO NOTHING;
 
 `;
 
