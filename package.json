@@ -8,7 +8,11 @@
     "start": "node db/populatedb.js && node app.js",
     "dev": "node db/populatedb.js && node --watch app.js"
   },
-  "keywords": ["manga", "inventory", "web app"],
+  "keywords": [
+    "manga",
+    "inventory",
+    "web app"
+  ],
   "author": "La Bout",
   "license": "ISC",
   "dependencies": {
@@ -18,8 +22,5 @@
     "express": "^4.19.2",
     "express-validator": "^7.2.0",
     "pg": "^8.12.0"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.22" 
   }
 }
