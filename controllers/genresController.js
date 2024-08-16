@@ -82,13 +82,15 @@ async function createGenrePost (req, res)  {
             errors : [{msg:"Genre Already Exists"}] //handled this way so the user sees the error on the rendeing
         })
       };
+
+      let insertedGenredID ;
       try {
-      await genresQueries.addNewGenre(genreName,genreDescription,genreImage);
+      insertedGenredID = await genresQueries.addNewGenre(genreName,genreDescription,genreImage);
       } catch (error) {
         console.error('Error adding genre:', error);
         return res.status(500).json({ error: 'Internal server error' });
       }
-      res.redirect("/genres");
+      res.redirect(`/genres/${insertedGenredID}`);
     }
 
 // controllers used when updating a Genre, redirecting to the create form and updating data

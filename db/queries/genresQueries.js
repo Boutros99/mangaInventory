@@ -55,8 +55,9 @@ async function getGenreIdFromName(genreName) {
 async function addNewGenre(name,description,image) {
   
   try {
-    await pool.query('INSERT INTO GENRES (name,description,image) VALUES ($1,$2,$3)',[name,description,image])
+    const {rows} = await pool.query('INSERT INTO GENRES (name,description,image) VALUES ($1,$2,$3) RETURNING id',[name,description,image])
     console.log(`Genre inserted successfully.`);
+    return rows[0].id;
   } catch (error) {
     console.error('Error adding Genre:', error);
   }
