@@ -48,7 +48,7 @@
 .genreButton {
     font-size: 28px;
     font-weight: bold;
-    width: 200px;
+    min-width: 200px;
     color: black;
     background-color:rgb(255, 157, 10);
     border: 2px solid black;
