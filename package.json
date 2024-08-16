@@ -1,15 +1,16 @@
 {
-  "name": "sql-first-steps",
+  "name": "manga_inventory",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "A web app for managing manga inventory.",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node db/populatedb.js"
+    "start": "node db/populatedb.js && node app.js",
+    "dev": "node db/populatedb.js && node --watch app.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["manga", "inventory", "web app"],
+  "author": "La Bout",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "axios": "^1.7.4",
     "dotenv": "^16.4.5",
@@ -17,5 +18,8 @@
     "express": "^4.19.2",
     "express-validator": "^7.2.0",
     "pg": "^8.12.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22" 
   }
 }
