@@ -33,7 +33,7 @@ img {
     flex: 1 1 auto; /* Allow the image to grow and shrink within its container */
     max-width: min(35%,500px) ;
     height: auto;
-    max-height: min(80vh,800px);
+    max-height: min(60vh,650px);
     object-fit: cover; /* Ensure the image fits within the container without being cropped */
     aspect-ratio:  9/ 16; /* Set the desired aspect ratio */
     border: 5px solid rgb(255, 157, 10); /* Border styling */
