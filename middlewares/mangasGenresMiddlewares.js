@@ -5,7 +5,7 @@ const mangasGenresQueries = require("../db/queries/mangasGenresQueries");
 // add all relationships 
 async function addAllRelationships (mangaID,genresIDs) {
  for (const genreID of genresIDs) {
-    await mangasGenresQueries.addNewRelationship(mangaID,genreID);
+    await mangasGenresQueries.addNewRelationship(parseInt(mangaID),parseInt(genreID));
  }
 };
 

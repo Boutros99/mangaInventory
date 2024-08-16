@@ -103,7 +103,13 @@ async function createMangaPost (req, res)  {
         errors: errors.array(),
     });
     }
-    const { title,description,status,publicationYear,author, image,genresIDs } = req.body;
+
+    // retrieving and transforming body 
+    let { title,description,status,publicationYear,author, image,genresIDs } = req.body; // attention ! GenresID can be a string or an array of strings !
+    const publicationYearInt = parseInt(publicationYear, 10); // turning directly the year as int
+    if (!Array.isArray(genresIDs)) {genresIDs=[genresIDs]}; // turned into an array --> important because the input of addallrelationships must be an array
+
+
     const doesMangaExist = await mangasQueries.doesMangaExist(title);    
     if (doesMangaExist) {
     return res.status(409).render("createManga", {
@@ -118,7 +124,7 @@ async function createMangaPost (req, res)  {
     let insertedMangadID ; // defining it before the two try catch to use it in both
 
     try { //adding data to MANGAS table
-    const publicationYearInt = parseInt(publicationYear, 10);
+
     insertedMangadID = await mangasQueries.addNewManga(title,description,status,publicationYearInt,author,image); // returns the id of the newly created manga
     } catch (error) {
     console.error('Error adding Manga:', error);
@@ -181,9 +187,15 @@ async function updateMangaPost(req, res) {
     });
     }
 
+
+
+
+  // retrieving and transforming body 
+  let { title,description,status,publicationYear,author, image,genresIDs } = req.body; // attention ! GenresID can be a string or an array of strings !
+  const publicationYearInt = parseInt(publicationYear, 10); // turning directly the year as int
+  if (!Array.isArray(genresIDs)) {genresIDs=[genresIDs]}; // turned into an array --> important because the input of addallrelationships must be an array
+
   // updating the table MANGA
-  const { title,description,status,publicationYear,author, image ,genresIDs } = req.body;
-  const publicationYearInt = parseInt(publicationYear, 10);
   try { 
     await mangasQueries.updateManga( mangaID, title,description,status,publicationYearInt,author,image);
     } catch (error) {
