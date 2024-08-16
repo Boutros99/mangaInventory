@@ -11,7 +11,9 @@
     background-repeat: no-repeat;
     filter: brightness(50%); /* Adjust brightness here */
     z-index: -1; /* Place the pseudo-element behind the content */
+
 }
+
 
 /* Ensure content is visible above the background */
 .mainContent h1, .mainContent .genreContainer{
@@ -21,19 +23,23 @@
 
 
 .genreContainer {
-    flex: 1;
+    flex: 1 1 auto;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: flex-start;
-    align-content: center;
+    align-content: flex-start;
     gap: 30px;
-    padding: 0px;
+    padding: 30px;
     margin: 0px;
+    max-height: 300px;
+    min-height: 150px;
+    overflow-y: auto; 
 }
 
 .mainTitle {
     margin-top: 50px;
+    margin-bottom: 50px;
     font-size: 48px;
     color: white;
 }
