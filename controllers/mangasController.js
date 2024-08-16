@@ -86,18 +86,28 @@ async function createMangaGet(req, res) {
 
 async function createMangaPost (req, res)  { 
 
+  let genres;
+  try {
+      genres = await genresQueries.getAllGenres();
+    } catch (error) {
+      console.error('Error accessing the genres', error);
+      return res.status(500).render('serverError');
+    }
+
     // dealing with input mistakes from user
 
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
     return res.status(400).render("createManga", {
+        genres : genres,
         errors: errors.array(),
     });
     }
     const { title,description,status,publicationYear,author, image,genresIDs } = req.body;
-    const doesMangaExist = await mangasQueries.doesMangaExist(title);
+    const doesMangaExist = await mangasQueries.doesMangaExist(title);    
     if (doesMangaExist) {
     return res.status(409).render("createManga", {
+        genres : genres,
         errors : [{msg:"Manga Already Exists"}] //handled this way so the user sees the error on the rendeing
     })
     };
