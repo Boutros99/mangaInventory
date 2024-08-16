@@ -105,23 +105,23 @@ async function createMangaPost (req, res)  {
 
     // adding form data to tables 
 
-    let inserteMangadID ; // defining it before the two try catch to use it in both
+    let insertedMangadID ; // defining it before the two try catch to use it in both
 
     try { //adding data to MANGAS table
     const publicationYearInt = parseInt(publicationYear, 10);
-    inserteMangadID = await mangasQueries.addNewManga(title,description,status,publicationYearInt,author,image); // returns the id of the newly created manga
+    insertedMangadID = await mangasQueries.addNewManga(title,description,status,publicationYearInt,author,image); // returns the id of the newly created manga
     } catch (error) {
     console.error('Error adding Manga:', error);
     return res.status(500).render('serverError');
     }
 
     try { //adding data to MANGAS_GENRES table
-        await mangasGenresMiddlewares.addAllRelationships(inserteMangadID,genresIDs)
+        await mangasGenresMiddlewares.addAllRelationships(insertedMangadID,genresIDs)
     } catch (error) {
     console.error('Error adding Manga & Genre relation:', error);
     return res.status(500).render('serverError');
     }
-    res.redirect("/mangas");
+    rres.redirect(`/mangas/${insertedMangadID}` );
 }
 
 // controllers used when updating a manga, redirecting to the create form and updating data
