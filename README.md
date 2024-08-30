@@ -4,7 +4,7 @@
 
 ## Purpose
 
-MangaVault is a web application project designed to manage and organize information about manga series and their respective genres. The purpose goal was to provide an interface for storing, retrieving, updating, and deleting information related to manga collections.
+MangaVault is a web application project designed to manage and organize information about manga series and their respective genres. The goal was to provide a website for storing, retrieving, updating, and deleting information related to manga collections.
 
 ## Features
 
@@ -13,8 +13,8 @@ MangaVault is a web application project designed to manage and organize informat
 - **CRUD Operations**: 
   - **Create**: Add new mangas and genres to the inventory.
   - **Read**: View detailed information about each manga and genre.
-  - **Update**: Modify existing entries for mangas and genres. (need a password)
-  - **Delete**: Remove mangas and genres from the database. (need a password)
+  - **Update**: Modify existing entries for mangas and genres (need a password).
+  - **Delete**: Remove mangas and genres from the database (need a password).
 
 - **Dynamic Genre Selection**: Users can select multiple genres when adding or updating a manga, utilizing a dynamic selection list that loads available genres from the database.
 
@@ -37,6 +37,6 @@ MangaVault is a web application project designed to manage and organize informat
 
 - **Mangas** : mangas table
 - **Genres** : genres table
-- **Mangas_genres** : relationships between mangas and genres (many to many)
+- **Mangas_genres** : relationships between mangas and genres (many to many).
 
 
